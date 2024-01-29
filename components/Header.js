@@ -1,3 +1,8 @@
+/**
+ * Header.js defines a reusable header component for displaying a title.
+ * It accepts a 'headerTitle' prop to customize the title text.
+ */
+
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
