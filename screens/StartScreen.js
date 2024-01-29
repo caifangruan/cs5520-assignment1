@@ -11,6 +11,7 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
   const [isChecked, setChecked] = useState(false);
   const [nameError, setNameError] = useState('');
   const [numberError, setNumberError] = useState('');
+  const [isConfirmDisabled, setConfirmDisabled] = useState(true);
 
   // Function to validate user inputs
   const validateInputs = () => {
@@ -24,9 +25,6 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
     }
 
     const userNumber = parseInt(inputNumber, 10);
-    // console.log(`Input Number: ${inputNumber}, Parsed Number: ${userNumber}`);
-    // console.log(`Type of inputNumber: ${typeof inputNumber}, Value: ${inputNumber}`);
-    // console.log(`Type of userNumber: ${typeof userNumber}, Value: ${userNumber}`);
 
     if (isNaN(userNumber) || userNumber < 1020 || userNumber > 1029 || inputNumber.length > 4 ){
       setNumberError('Please enter a valid number.');
@@ -40,9 +38,14 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
 
   // Function to handle the confirmation button click
   const handleConfirm = () => {
-    if (validateInputs() && isChecked) {
+    const isValid = validateInputs();
+
+    if (isValid && isChecked) {
       const numericUserNumber = parseInt(inputNumber, 10);
       onStartGame(userName, numericUserNumber); 
+    } else {
+      // Display error messages
+      validateInputs();
     }
   };
 
@@ -51,16 +54,28 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
     onNameChange('');
     onNumberChange('');
     setChecked(false);
+    setNameError('');
+    setNumberError('');
+    setConfirmDisabled(true); // Disable Confirm button on reset
+  };
+
+  // Function to handle checkbox state change
+  const handleCheckboxChange = (value) => {
+    setChecked(value);
+    setConfirmDisabled(!value); // Enable Confirm button when the checkbox is selected
   };
 
   return (
     <View style={styles.container}>
-      <Header headerTitle = "Guess My Number" />
+      <Header headerTitle="Guess My Number" />
       <Card>
         <Text style={styles.label}>Name</Text>
         <InputField
           value={userName}
-          onChangeText={onNameChange}
+          onChangeText={(text) => {
+            onNameChange(text);
+            setConfirmDisabled(!isChecked || !text); // Enable Confirm button if the checkbox is selected and name is not empty
+          }}
           keyboardType="default"
         />
         <Text style={styles.errorText}>{nameError}</Text>
@@ -68,7 +83,10 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
         <Text style={styles.label}>Enter a Number</Text>
         <InputField
           value={inputNumber.toString()}
-          onChangeText={text => onNumberChange(text)}
+          onChangeText={(text) => {
+            onNumberChange(text);
+            setConfirmDisabled(!isChecked || !text); // Enable Confirm button if the checkbox is selected and number is not empty
+          }}
           keyboardType="numeric"
         />
         <Text style={styles.errorText}>{numberError}</Text>
@@ -76,21 +94,24 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
         <CheckboxComponent
           label="I am not a robot"
           isChecked={isChecked}
-          setChecked={setChecked}
+          setChecked={handleCheckboxChange}
         />
 
         <View style={styles.buttonContainer}>
-          <Button title="Reset" onPress={handleReset} textColor="red"/>
-          <Button title="Confirm" onPress={handleConfirm}  textColor="blue"/>
+          <Button title="Reset" onPress={handleReset} textColor="red" />
+          <Button
+            title="Confirm"
+            onPress={handleConfirm}
+            textColor="blue"
+            disabled={isConfirmDisabled} // Disable Confirm button if not checked or inputs are invalid
+          />
         </View>
       </Card>
     </View>
-  
   );
 };
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     justifyContent: 'flex-start',
