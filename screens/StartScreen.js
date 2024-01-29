@@ -56,13 +56,13 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
     setChecked(false);
     setNameError('');
     setNumberError('');
-    setConfirmDisabled(true); // Disable Confirm button on reset
+    setConfirmDisabled(true); 
   };
 
   // Function to handle checkbox state change
   const handleCheckboxChange = (value) => {
     setChecked(value);
-    setConfirmDisabled(!value); // Enable Confirm button when the checkbox is selected
+    setConfirmDisabled(!value); 
   };
 
   return (
@@ -74,7 +74,7 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
           value={userName}
           onChangeText={(text) => {
             onNameChange(text);
-            setConfirmDisabled(!isChecked || !text); // Enable Confirm button if the checkbox is selected and name is not empty
+            setConfirmDisabled(!isChecked || !text); 
           }}
           keyboardType="default"
         />
@@ -85,7 +85,7 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
           value={inputNumber.toString()}
           onChangeText={(text) => {
             onNumberChange(text);
-            setConfirmDisabled(!isChecked || !text); // Enable Confirm button if the checkbox is selected and number is not empty
+            setConfirmDisabled(!isChecked || !text); 
           }}
           keyboardType="numeric"
         />
@@ -103,7 +103,7 @@ const StartScreen = ({ onStartGame, onNameChange, onNumberChange, userName, inpu
             title="Confirm"
             onPress={handleConfirm}
             textColor="blue"
-            disabled={isConfirmDisabled} // Disable Confirm button if not checked or inputs are invalid
+            disabled={isConfirmDisabled} 
           />
         </View>
       </Card>

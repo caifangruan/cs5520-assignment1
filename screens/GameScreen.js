@@ -5,8 +5,11 @@ import Button from '../components/Button';
 import { colors } from '../components/colors';
 
 const GameScreen = ({ isVisible, userName, userNumber, onGuess, attemptsLeft, correctNumber }) => {
+  // Check if the user has won
   const hasWon = userNumber === correctNumber;
+  // Text to display the number of attempts left
   const attemptsText = `You have ${attemptsLeft} ${attemptsLeft === 1 ? 'attempt' : 'attempts'} left!`;
+ 
   // console.log(`Type of userNumber: ${typeof userNumber}, Value: ${userNumber}`);
   // console.log(`Type of correctNumber: ${typeof correctNumber}, Value: ${correctNumber}`);
 

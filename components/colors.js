@@ -7,7 +7,7 @@ export const colors = {
     cardBackground: 'darkgrey',
     cardShadow: 'grey',
     text: 'purple',
-    button: '#007AFF',
+    button: 'transparent',
     buttonText: '#fff',
     errorText: 'grey',
     

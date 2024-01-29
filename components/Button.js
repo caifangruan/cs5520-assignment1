@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colors } from './colors';
-
 /**
  * Button component represents a touchable button with customizable text and behavior.
  *
@@ -31,7 +30,7 @@ const Button = ({ title, onPress, disabled, textColor }) => {
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       disabled={disabled}
-      style={[styles.button, disabled && styles.disabledButton]}
+      style={styles.button}
     >
       <Text style={[styles.text, { color: isPressed ? 'grey' : textColor }]}>
         {title}
@@ -46,9 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     marginVertical: 5,
-  },
-  disabledButton: {
-    backgroundColor: colors.text,
+    backgroundColor: colors.button,
   },
   text: {
     fontSize: 16,
