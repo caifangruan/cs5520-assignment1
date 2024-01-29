@@ -9,8 +9,9 @@ import Header from '../components/Header';
 const FinalScreen = ({ hasWon, correctNumber, onRestart }) => {
   //onsole.log(`Type of correctNumber in final: ${typeof correctNumber}, Value: ${correctNumber}`);
   const imageSource = hasWon
-  
+    //if won, display the online image
     ? {uri: `https://picsum.photos/id/${correctNumber}/100/100`}
+    //if fail, display the local image
     : require('../assets/SadFace.jpeg'); 
 
   
