@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colors } from './colors';
 
+/**
+ * Button component represents a touchable button with customizable text and behavior.
+ *
+ * @param {string} title - The text displayed on the button.
+ * @param {function} onPress - Callback function to be executed when the button is pressed.
+ * @param {boolean} disabled - Indicates whether the button is disabled.
+ * @param {string} textColor - The color of the button text.
+ * @returns {JSX.Element} - A React component that represents a customizable button.
+ */
+
 const Button = ({ title, onPress, disabled, textColor }) => {
   const [isPressed, setIsPressed] = useState(false);
 

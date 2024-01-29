@@ -1,8 +1,14 @@
-// src/components/Card.js
+
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { colors } from './colors';
 
+/**
+ * Card component represents a styled container for content.
+ *
+ * @param {ReactNode} children - The content to be displayed within the card.
+ * @returns {JSX.Element} - A React component that provides a card-like container for content.
+ */
 const Card = ({ children }) => <View style={styles.card}>{children}</View>;
 
 const styles = StyleSheet.create({

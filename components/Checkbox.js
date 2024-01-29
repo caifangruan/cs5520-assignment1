@@ -3,13 +3,19 @@ import Checkbox from 'expo-checkbox';
 import { View, Text, StyleSheet } from 'react-native';
 import { colors } from './colors';
 
-
+/**
+ * CheckboxComponent is a custom checkbox component.
+ *
+ * @param {boolean} isChecked - Indicates whether the checkbox is checked.
+ * @param {function} setChecked - A function to handle checkbox state changes.
+ * @returns {JSX.Element} - A React component that displays a checkbox with a label.
+ */
 const CheckboxComponent = ({isChecked,setChecked}) => {
   return(
-  <View style={styles.section}>
-    <Checkbox style={styles.checkbox} value={isChecked} onValueChange={setChecked} />
-    <Text style={styles.label}>I am not a robot</Text>
-  </View>
+    <View style={styles.section}>
+      <Checkbox style={styles.checkbox} value={isChecked} onValueChange={setChecked} />
+      <Text style={styles.label}>I am not a robot</Text>
+    </View>
   )
   };
 
